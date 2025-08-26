@@ -10,15 +10,15 @@ namespace ProblemTests
         [Test]
         public void Test_FirstNonRepeatingChar()
         {
-            Assert.AreEqual('w', Sample3.FirstNonRepeatingChar("swiss"));
-            Assert.AreEqual('\0', Sample3.FirstNonRepeatingChar("aabbcc"));
+            Assert.That(Sample3.FirstNonRepeatingChar("swiss"), Is.EqualTo('w'));
+            Assert.That(Sample3.FirstNonRepeatingChar("aabbcc"), Is.EqualTo('\0'));
         }
 
         [Test]
         public void Test_ReverseWords()
         {
-            Assert.AreEqual("world hello", Sample3.ReverseWords("  hello world  "));
-            Assert.AreEqual("blue is sky the", Sample3.ReverseWords("the sky is blue"));
+            Assert.That(Sample3.ReverseWords("  hello world  "), Is.EqualTo("world hello"));
+            Assert.That(Sample3.ReverseWords("the sky is blue"), Is.EqualTo("blue is sky the"));
         }
 
         [Test]
@@ -33,20 +33,20 @@ namespace ProblemTests
         public void Test_MissingNumber()
         {
             int[] nums = { 3, 0, 1 };
-            Assert.AreEqual(2, Sample3.MissingNumber(nums));
+            Assert.That(Sample3.MissingNumber(nums), Is.EqualTo(2));
 
             nums = new int[] { 0, 1 };
-            Assert.AreEqual(2, Sample3.MissingNumber(nums));
+            Assert.That(Sample3.MissingNumber(nums), Is.EqualTo(2));
         }
 
         [Test]
         public void Test_MaxSubArray()
         {
             int[] nums = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
-            Assert.AreEqual(6, Sample3.MaxSubArray(nums));
+            Assert.That(Sample3.MaxSubArray(nums), Is.EqualTo(6));
 
             nums = new int[] { 1 };
-            Assert.AreEqual(1, Sample3.MaxSubArray(nums));
+            Assert.That(Sample3.MaxSubArray(nums), Is.EqualTo(1));
         }
     }
 }
