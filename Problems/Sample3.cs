@@ -102,5 +102,64 @@ namespace Problem
             }
             return maxSoFar;
         }
+
+        // -----------------------------
+        // Problem: Fibonacci (nth number)
+        // Given n, return the nth Fibonacci number.
+        // Examples:
+        //   Fibonacci(0) -> 0
+        //   Fibonacci(1) -> 1
+        //   Fibonacci(5) -> 5
+        //   Fibonacci(10) -> 55
+        // Time Complexity: O(n)
+        // Space Complexity: O(1)
+        // Note: For large n the result may overflow Int32. If you expect big n, use long or BigInteger.
+        // -----------------------------
+        public static int Fibonacci(int n)
+        {
+            if (n < 0) throw new ArgumentOutOfRangeException(nameof(n), "n must be non-negative");
+            if (n == 0) return 0;
+            if (n == 1) return 1;
+
+            int a = 0; // F(0)
+            int b = 1; // F(1)
+            for (int i = 2; i <= n; i++)
+            {
+                checked // optional: throws on overflow
+                {
+                    int c = a + b;
+                    a = b;
+                    b = c;
+                }
+            }
+            return b;
+        }
+
+        // -----------------------------
+        // Problem: FizzBuzz
+        // Return an array/list of strings for numbers from 1..n with rules:
+        //  - if divisible by 3 -> "Fizz"
+        //  - if divisible by 5 -> "Buzz"
+        //  - if divisible by both -> "FizzBuzz"
+        //  - otherwise the number as string
+        // Examples:
+        //   FizzBuzz(5) -> ["1","2","Fizz","4","Buzz"]
+        //   FizzBuzz(15) -> ... element 15 is "FizzBuzz"
+        // Time Complexity: O(n)
+        // Space Complexity: O(n)
+        // -----------------------------
+        public static List<string> FizzBuzz(int n)
+        {
+            var result = new List<string>(n);
+            for (int i = 1; i <= n; i++)
+            {
+                if (i % 15 == 0) result.Add("FizzBuzz");
+                else if (i % 3 == 0) result.Add("Fizz");
+                else if (i % 5 == 0) result.Add("Buzz");
+                else result.Add(i.ToString());
+            }
+            return result;
+        }
+
     }
 }
