@@ -11,14 +11,14 @@ namespace Problems.NUnit.Tests
         [TestCase("hello world", "abc", false)]
         public void Test_IsSubstring(string text, string pattern, bool expected)
         {
-            Assert.AreEqual(expected, Sample4.IsSubstring(text, pattern));
+            Assert.That(Sample4.IsSubstring(text, pattern), Is.EqualTo(expected));
         }
 
         [TestCase("abcdefg", 2, "badcfeg")]
         [TestCase("abcdef", 3, "cbafed")]
         public void Test_ReverseEveryKSubstring(string text, int k, string expected)
         {
-            Assert.AreEqual(expected, Sample4.ReverseEveryKSubstring(text, k));
+            Assert.That(Sample4.ReverseEveryKSubstring(text, k), Is.EqualTo(expected));
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Problems.NUnit.Tests
         [TestCase("bbbbb", "b")]
         public void Test_LongestUniqueSubstring(string text, string expected)
         {
-            Assert.AreEqual(expected, Sample4.LongestUniqueSubstring(text));
+            Assert.That(Sample4.LongestUniqueSubstring(text), Is.EqualTo(expected));
         }
 
         [TestCase("abcababcab", "ab", false, 4)]
@@ -42,14 +42,14 @@ namespace Problems.NUnit.Tests
         [TestCase("mississippi", "issi", true, 2)]
         public void Test_CountSubstringOccurrences(string text, string pattern, bool allowOverlapping, int expected)
         {
-            Assert.AreEqual(expected, Sample4.CountSubstringOccurrences(text, pattern, allowOverlapping));
+            Assert.That(Sample4.CountSubstringOccurrences(text, pattern, allowOverlapping), Is.EqualTo(expected));
         }
 
         [TestCase("abba", true)]
         [TestCase("abc", false)]
         public void Test_IsPalindrome(string text, bool expected)
         {
-            Assert.AreEqual(expected, Sample4.IsPalindrome(text));
+            Assert.That(Sample4.IsPalindrome(text), Is.EqualTo(expected));
         }
 
         [TestCase("babad", "bab", "aba")] // can be "bab" or "aba"
@@ -58,7 +58,7 @@ namespace Problems.NUnit.Tests
         {
             var result = Sample4.LongestPalindromicSubstring(text);
             if (expected2 == null)
-                Assert.AreEqual(expected1, result);
+                Assert.That(result, Is.EqualTo(expected1));
             else
                 Assert.IsTrue(result == expected1 || result == expected2);
         }
@@ -67,7 +67,7 @@ namespace Problems.NUnit.Tests
         [TestCase("a", "aa", "")]
         public void Test_MinWindowSubstring(string text, string pattern, string expected)
         {
-            Assert.AreEqual(expected, Sample4.MinWindowSubstring(text, pattern));
+            Assert.That(Sample4.MinWindowSubstring(text, pattern), Is.EqualTo(expected));
         }
     }
 }
