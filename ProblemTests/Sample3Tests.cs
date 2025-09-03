@@ -2,7 +2,7 @@
 using Problem;
 using System;
 
-namespace ProblemTests
+namespace Problems.NUnit.Tests
 {
     [TestFixture]
     public class Sample3Tests

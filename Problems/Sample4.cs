@@ -83,19 +83,30 @@ namespace Problem
         }
 
         /// <summary>
-        /// Problem 5: Count occurrences of a substring.
-        /// Example: text = "abcababcab", pattern = "ab" → 4
+        /// Count occurrences of a substring in a string.
+        /// Default behavior: non-overlapping occurrences (keeps old behavior).
+        /// Set allowOverlapping = true to count overlapping matches.
         /// </summary>
         public static int CountSubstringOccurrences(string text, string pattern)
         {
-            int count = 0, index = 0;
-            while ((index = text.IndexOf(pattern, index)) != -1)
+            return CountSubstringOccurrences(text, pattern, allowOverlapping: false);
+        }
+
+        public static int CountSubstringOccurrences(string text, string pattern, bool allowOverlapping)
+        {
+            if (text is null) throw new ArgumentNullException(nameof(text));
+            if (string.IsNullOrEmpty(pattern)) throw new ArgumentException("pattern cannot be null or empty", nameof(pattern));
+
+            int count = 0;
+            int index = 0;
+            while ((index = text.IndexOf(pattern, index, StringComparison.Ordinal)) != -1)
             {
                 count++;
-                index += pattern.Length;
+                index += allowOverlapping ? 1 : pattern.Length;
             }
             return count;
         }
+
 
         /// <summary>
         /// Problem 6: Check if a substring is a palindrome.

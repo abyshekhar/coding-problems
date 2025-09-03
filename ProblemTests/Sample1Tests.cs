@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProblemTests
+namespace Problems.NUnit.Tests
 {
     [TestFixture]
     public class Sample1Tests
