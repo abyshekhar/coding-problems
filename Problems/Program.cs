@@ -15,13 +15,34 @@ string input = Console.ReadLine();
 //int[] arr = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
 //Console.WriteLine(Class1.FindMinMax(arr));
 //Console.WriteLine(Sample2.MaxSubArraySum(arr));
-System.Console.WriteLine(Practice1.ReverseString(input));
-System.Console.WriteLine(Practice1.ReverseIndividualWordsInASentence(input));
-System.Console.WriteLine(Practice1.ReverseTheSentenceByWords(input));
-System.Console.WriteLine(Practice1.ExtractLettersFromString(input));
-System.Console.WriteLine(Practice1.ExtractNumbersFromString(input));
+//System.Console.WriteLine(Practice1.ReverseString(input));
+//System.Console.WriteLine(Practice1.ReverseIndividualWordsInASentence(input));
+//System.Console.WriteLine(Practice1.ReverseTheSentenceByWords(input));
+//System.Console.WriteLine(Practice1.ExtractLettersFromString(input));
+//System.Console.WriteLine(Practice1.ExtractNumbersFromString(input));
 
-System.Console.WriteLine(Practice1.ReverseArray((new int[]  {1,2,3,4,5, 6, 7 })));
-System.Console.WriteLine(Practice1.FindMinMax((new int[] { 1, 2, 3, 4, 5, 6,7})));
-System.Console.WriteLine(Practice1.CountVowelsConsonants(input));
-Practice1.FrequencyOfLettersOfString(input);
+//System.Console.WriteLine(Practice1.ReverseArray((new int[]  {1,2,3,4,5, 6, 7 })));
+//System.Console.WriteLine(Practice1.FindMinMax((new int[] { 1, 2, 3, 4, 5, 6,7})));
+//System.Console.WriteLine(Practice1.CountVowelsConsonants(input));
+//Practice1.FrequencyOfLettersOfString(input);
+//Console.WriteLine($"Is Palindrome: "+Practice1.IsPalindrome(input));
+//Console.WriteLine($"Is Palindrome Robust: "+Practice1.IsPalindromeRobust(input));
+//Console.WriteLine(  Sample1.LongestUniqueSubstring(input));
+//List<int> ints = Practice1.IndexesAnagramInAString("cbaebabacd", "abc");
+//ints.ForEach(i => Console.WriteLine(i));
+//IList<int> ints1 = Sample1.FindAnagrams("cbaebabacd", "abc");
+//ints1.ToList().ForEach(i => Console.WriteLine(i));
+List<int[]> ints = [[1, 2], [3, 4], [1, 5], [6, 7]];
+Console.WriteLine("Original List of Arrays:");
+foreach (var arr in ints)
+{
+    // Print the actual contents of each array
+    Console.WriteLine($"[{string.Join(", ", arr)}]");
+}
+IList<int[]> mergedArray = Sample1.MergeIntervals(ints);
+Console.WriteLine("Merged List of Arrays:");
+foreach (var arr in mergedArray)
+{
+    // Print the actual contents of each merged array
+    Console.WriteLine($"[{string.Join(", ", arr)}]");
+}

@@ -119,6 +119,60 @@ namespace Problems
                 System.Console.WriteLine($"Frequency of {item.Key} is "+ frequency[item.Key]);
             }
         }
+        public static bool IsPalindrome(string input)
+        {
+            int i = 0, j = input.Length - 1;
+            while (i<j)
+            {
+                if (input[i] != input[j]) return false;
+                i++;
+                j--;
+            }
+            return true;
+        }
+
+        public static bool IsPalindromeRobust(string input)
+        {
+            int left=0, right=input.Length-1;
+            while (left<right)
+            {
+                while (left < right && !char.IsLetterOrDigit(input[left]))
+                {
+                    left++;
+                }
+                while (left<right && !char.IsLetterOrDigit(input[right]))
+                {
+                    right--;
+                }
+                if (char.ToLower(input[left]) != char.ToLower(input[right]))
+                {
+                    return false;
+                }
+                left++;
+                right--;
+            }
+            return true;
+        }
+        // Sudhanshu
+        public static int LongestUniqueSubstring(string input)
+        {
+            HashSet<char> values = new HashSet<char>();
+            for (int left = 0; left < input.Length; left++)
+            {
+                int right = 0;
+                while (values.Contains(input[left]))
+                {
+                    values.Remove(input[right]);
+                    right++;
+                }
+                values.Add(input[left]);
+                
+            }
+            return 0;
+        }
+        
+        
+
     }
 
 }

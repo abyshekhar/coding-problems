@@ -5,10 +5,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static Problems.Sample2;
 
 namespace Problems
 {
-    public static class Sample1
+    public static partial class Sample1
     {
         public static string ReverseString(string input)
         {
@@ -115,6 +116,44 @@ namespace Problems
             return String.Concat(s1.OrderBy(c => c)) == String.Concat(s2.OrderBy(c => c));
         }
 
+        public static IList<int> FindAnagrams(string s, string p)
+        {
+            var res = new List<int>();
+            if (string.IsNullOrEmpty(s) || string.IsNullOrEmpty(p) || s.Length < p.Length) return res;
+            int[] pat = new int[26];
+            int[] win = new int[26];
+            foreach (var ch in p) pat[ch - 'a']++;
+            int left = 0, right = 0, required = p.Length;
+            while (right < s.Length)
+            {
+                int idx = s[right] - 'a';
+                win[idx]++;
+                right++;
+                if (right - left == p.Length)
+                {
+                    if (Enumerable.Range(0, 26).All(i => win[i] == pat[i]))
+                        res.Add(left);
+                    win[s[left] - 'a']--;
+                    left++;
+                }
+            }
+            return res;
+        }
+
+        // abcakjdfljbaceekjfh
+        public static List<int> IndexesAnagramInAString(string input, string pattern)
+        {
+            List<int> ints = new List<int>();
+            int j = 0;
+            int patternLength = pattern.Length;
+            for (int i = 0; i < input.Length - patternLength; i++)
+            {
+                string substring = input.Substring(i, patternLength);
+                bool IsAnagram = string.Concat(substring.OrderBy(c => c)) == string.Concat(pattern.OrderBy(c => c));
+                if (IsAnagram) ints.Add(i);
+            }
+            return ints;
+        }
         //3. Find the missing number in a sequence(1..n)
         public static int MissingNumber(int[] arr, int n)
         {
@@ -138,6 +177,7 @@ namespace Problems
         }
 
         //1. Longest substring without repeating characters
+        //Sudhanshu
         public static int LongestUniqueSubstring(string s)
         {
             var set = new HashSet<char>();
@@ -151,7 +191,43 @@ namespace Problems
             return maxLen;
         }
 
+        //LongestUniqueSubstring("abcabcbb"); // "abc"
+        //LongestUniqueSubstring("bbbbb");    // "b"
+        //LongestUniqueSubstring("pwwkew");   // "wke"
+        //LongestUniqueSubstring("Sudhanshu"); // "Sudhans"
+        public static string PrintLongestUniqueSubstring(string s)
+        {
+            var set = new HashSet<char>();
+            int left = 0, maxLen = 0, startIndex = 0;
+
+            for (int right = 0; right < s.Length; right++)
+            {
+                // If duplicate, shrink from left until it's removed
+                while (set.Contains(s[right]))
+                {
+                    set.Remove(s[left]);
+                    left++;
+                }
+
+                // Add current char to the set
+                set.Add(s[right]);
+
+                // Update max length and start index
+                int windowLen = right - left + 1;
+                if (windowLen > maxLen)
+                {
+                    maxLen = windowLen;
+                    startIndex = left;
+                }
+            }
+
+            // Extract substring
+            return s.Substring(startIndex, maxLen);
+        }
+
         //2. Maximum subarray sum(Kadane’s Algorithm)
+        // 1, -2, 3, 4, -1, 2, 1, -5, 4 
+        // 9
         public static int MaxSubArray(int[] nums)
         {
             int max = nums[0], current = nums[0];
@@ -162,6 +238,38 @@ namespace Problems
             }
             return max;
         }
+        public static (int maxSum, int[] subarray) KadaneWithSubarray(int[] nums)
+        {
+            int currentMax = nums[0];
+            int maxSoFar = nums[0];
+            int start = 0, end = 0, s = 0;
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (nums[i] > currentMax + nums[i])
+                {
+                    currentMax = nums[i];
+                    s = i;
+                }
+                else
+                {
+                    currentMax += nums[i];
+                }
+
+                if (currentMax > maxSoFar)
+                {
+                    maxSoFar = currentMax;
+                    start = s;
+                    end = i;
+                }
+            }
+
+            int[] subarray = new int[end - start + 1];
+            Array.Copy(nums, start, subarray, 0, subarray.Length);
+
+            return (maxSoFar, subarray);
+        }
+
 
         //3. Check if a string of parentheses is valid
         public static bool IsValidParentheses(string s)
@@ -200,6 +308,294 @@ namespace Problems
             var words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             return words.GroupBy(w => w.ToLower())
             .ToDictionary(g => g.Key, g => g.Count());
+        }
+
+        // Merge overlapping arrays
+        //[1,2],[3,4],[1,5],[6,7]
+        public static IList<int[]> MergeIntervals(IList<int[]> intervals)
+        {
+            if (intervals == null || intervals.Count == 0) return new List<int[]>();
+            var sorted = intervals.OrderBy(i => i[0]).ToList();
+            Console.WriteLine($" Sorted List of Arrays");
+            foreach (var interval in sorted) Console.WriteLine($"[{string.Join(",", interval)}]");
+            var result = new List<int[]>();
+            int[] current = sorted[0];
+            foreach (var next in sorted.Skip(1))
+            {
+                if (next[0] <= current[1]) // overlap
+                {
+                    current[1] = Math.Max(current[1], next[1]);
+                }
+                else
+                {
+                    result.Add(current);
+                    current = next;
+                }
+            }
+            result.Add(current);
+            return result;
+        }
+        public static double FindMedianSortedArrays(int[] A, int[] B)
+        {
+
+            if (A.Length > B.Length) return FindMedianSortedArrays(B, A);
+
+            int m = A.Length, n = B.Length;
+
+            int totalLeft = (m + n + 1) / 2;
+
+            int left = 0, right = m;
+
+            while (left <= right)
+
+            {
+
+                int i = (left + right) / 2;
+
+                int j = totalLeft - i;
+
+                int Aleft = (i == 0) ? int.MinValue : A[i - 1];
+
+                int Aright = (i == m) ? int.MaxValue : A[i];
+
+                int Bleft = (j == 0) ? int.MinValue : B[j - 1];
+
+                int Bright = (j == n) ? int.MaxValue : B[j];
+
+                if (Aleft <= Bright && Bleft <= Aright)
+
+                {
+
+                    if ((m + n) % 2 == 1)
+
+                        return Math.Max(Aleft, Bleft);
+
+                    else
+
+                        return (Math.Max(Aleft, Bleft) + Math.Min(Aright, Bright)) / 2.0;
+
+                }
+
+                else if (Aleft > Bright)
+
+                {
+
+                    right = i - 1;
+
+                }
+
+                else
+
+                {
+
+                    left = i + 1;
+
+                }
+
+            }
+
+            throw new ArgumentException("Input arrays not valid");
+
+        }
+
+        public static int FindKthLargest(int[] nums, int k)
+        {
+
+            var pq = new PriorityQueue<int, int>(); // min-heap keyed by value
+
+            foreach (var num in nums)
+
+            {
+
+                pq.Enqueue(num, num);
+
+                if (pq.Count > k) pq.Dequeue();
+
+            }
+
+            return pq.Peek();
+
+        }
+
+        public static void Rotate(int[][] matrix)
+        {
+
+            int n = matrix.Length;
+
+            // Transpose
+
+            for (int i = 0; i < n; i++)
+
+            {
+
+                for (int j = i + 1; j < n; j++)
+
+                {
+
+                    var tmp = matrix[i][j];
+
+                    matrix[i][j] = matrix[j][i];
+
+                    matrix[j][i] = tmp;
+
+                }
+
+            }
+
+            // Reverse each row
+
+            for (int i = 0; i < n; i++)
+
+            {
+
+                Array.Reverse(matrix[i]);
+            }
+        }
+
+        public class ListNode
+        {
+            public int val;
+            public ListNode next;
+            public ListNode(int val = 0, ListNode next = null)
+            {
+                this.val = val;
+                this.next = next;
+            }
+        }
+
+        public static bool HasCycle(ListNode head)
+
+        {
+
+            if (head == null) return false;
+
+            var slow = head;
+
+            var fast = head;
+
+            while (fast?.next != null)
+
+            {
+
+                slow = slow.next;
+
+                fast = fast.next.next;
+
+                if (slow == fast) return true;
+
+            }
+
+            return false;
+
+        }
+
+        public class TreeNode
+        {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+            {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+        }
+        public static string Serialize(TreeNode root)
+
+        {
+
+            if (root == null) return "";
+
+            var sb = new StringBuilder();
+
+            var q = new Queue<TreeNode?>();
+
+            q.Enqueue(root);
+
+            while (q.Count > 0)
+
+            {
+
+                var node = q.Dequeue();
+
+                if (node == null) sb.Append("#,");
+
+                else
+
+                {
+
+                    sb.Append(node.val).Append(',');
+
+                    q.Enqueue(node.left);
+
+                    q.Enqueue(node.right);
+
+                }
+
+            }
+
+            return sb.ToString().TrimEnd(',');
+
+        }
+
+        public static TreeNode Deserialize(string data)
+
+        {
+
+            if (string.IsNullOrEmpty(data)) return null;
+
+            var parts = data.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            var root = new TreeNode(int.Parse(parts[0]));
+
+            var q = new Queue<TreeNode>();
+
+            q.Enqueue(root);
+
+            int i = 1;
+
+            while (q.Count > 0 && i < parts.Length)
+
+            {
+
+                var node = q.Dequeue();
+
+                var leftVal = parts[i++];
+
+                if (leftVal != "#")
+
+                {
+
+                    node.left = new TreeNode(int.Parse(leftVal));
+
+                    q.Enqueue(node.left);
+
+                }
+
+                if (i < parts.Length)
+
+                {
+
+                    var rightVal = parts[i++];
+
+                    if (rightVal != "#")
+
+                    {
+
+                        node.right = new TreeNode(int.Parse(rightVal));
+
+                        q.Enqueue(node.right);
+
+                    }
+
+                }
+
+            }
+
+            return root;
+
         }
 
     }
