@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Problems.xUnit.Tests", "Pro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Problems.NUnit.Tests", "Problem.NUnit.Tests\Problems.NUnit.Tests.csproj", "{A05ADED6-1FEA-4A0F-A61C-E4D591E6CDEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problems.AspNetCore", "Problems.AspNetCore\Problems.AspNetCore.csproj", "{73137F05-DD69-4E27-8EDD-280BAF746CED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A05ADED6-1FEA-4A0F-A61C-E4D591E6CDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A05ADED6-1FEA-4A0F-A61C-E4D591E6CDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A05ADED6-1FEA-4A0F-A61C-E4D591E6CDEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73137F05-DD69-4E27-8EDD-280BAF746CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73137F05-DD69-4E27-8EDD-280BAF746CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73137F05-DD69-4E27-8EDD-280BAF746CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73137F05-DD69-4E27-8EDD-280BAF746CED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
