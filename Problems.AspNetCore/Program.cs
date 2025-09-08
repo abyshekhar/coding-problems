@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Problems.AspNetCore.Middleware;
 using Problems.AspNetCore.Middlewares;
 using Problems.AspNetCore.ModelBinders;
 using Serilog;
