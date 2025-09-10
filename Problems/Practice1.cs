@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Problems
 {
     public static class Practice1
@@ -116,13 +118,13 @@ namespace Problems
             }
             foreach (var item in frequency)
             {
-                System.Console.WriteLine($"Frequency of {item.Key} is "+ frequency[item.Key]);
+                System.Console.WriteLine($"Frequency of {item.Key} is " + frequency[item.Key]);
             }
         }
         public static bool IsPalindrome(string input)
         {
             int i = 0, j = input.Length - 1;
-            while (i<j)
+            while (i < j)
             {
                 if (input[i] != input[j]) return false;
                 i++;
@@ -133,14 +135,14 @@ namespace Problems
 
         public static bool IsPalindromeRobust(string input)
         {
-            int left=0, right=input.Length-1;
-            while (left<right)
+            int left = 0, right = input.Length - 1;
+            while (left < right)
             {
                 while (left < right && !char.IsLetterOrDigit(input[left]))
                 {
                     left++;
                 }
-                while (left<right && !char.IsLetterOrDigit(input[right]))
+                while (left < right && !char.IsLetterOrDigit(input[right]))
                 {
                     right--;
                 }
@@ -166,12 +168,73 @@ namespace Problems
                     right++;
                 }
                 values.Add(input[left]);
-                
+
             }
             return 0;
         }
-        
-        
+
+        public static string ReverseWordsWithoutSplit(string input)
+        {
+            int start = 0;
+            bool wordEnd = false;
+            List<string> words = new List<string>();
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == ' ')
+                {
+                    wordEnd = true;
+                    words.Add(input.Substring(start, i - start));
+
+                }
+
+                if (wordEnd) { start = i; wordEnd = false; }
+            }
+            words.Add(input.Substring(start, input.Length - start));
+            List<string> reverseWords = new List<string>();
+            words.ForEach(word => reverseWords.Add(new string(word.Trim().Reverse().ToArray())));
+            string output = string.Join(' ', reverseWords);
+
+            Console.WriteLine(output);
+            return string.Empty;
+        }
+        //aabbbccc
+        public static string CompressString(string input)
+        {
+            // Handle empty or null input
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            StringBuilder compressedString = new StringBuilder();
+            int frequency = 1;
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i - 1] == input[i])
+                {
+                    frequency++;
+                }
+                else
+                {
+                    compressedString.Append(input[i - 1]);
+                    compressedString.Append(frequency);
+                    frequency = 1;
+                }
+            }
+
+            compressedString.Append(input[input.Length - 1]);
+            compressedString.Append(frequency);
+
+            // Check if the compressed string is actually smaller
+            if (compressedString.Length < input.Length)
+            {
+                return compressedString.ToString();
+            }
+            else
+            {
+                return input;
+            }
+        }
 
     }
 

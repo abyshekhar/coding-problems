@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Problems;
-Console.WriteLine("Welcome to the world of Coding Problems!");
+//Console.WriteLine("Welcome to the world of Coding Problems!");
 string input = Console.ReadLine();
 //Console.WriteLine("Original String :"+input);
 //Console.WriteLine("Reverse of the string using Reverse() method :"+string.Join("", input.Reverse()));
@@ -32,17 +32,77 @@ string input = Console.ReadLine();
 //ints.ForEach(i => Console.WriteLine(i));
 //IList<int> ints1 = Sample1.FindAnagrams("cbaebabacd", "abc");
 //ints1.ToList().ForEach(i => Console.WriteLine(i));
-List<int[]> ints = [[1, 2], [3, 4], [1, 5], [6, 7]];
-Console.WriteLine("Original List of Arrays:");
-foreach (var arr in ints)
-{
-    // Print the actual contents of each array
-    Console.WriteLine($"[{string.Join(", ", arr)}]");
-}
-IList<int[]> mergedArray = Sample1.MergeIntervals(ints);
-Console.WriteLine("Merged List of Arrays:");
-foreach (var arr in mergedArray)
-{
-    // Print the actual contents of each merged array
-    Console.WriteLine($"[{string.Join(", ", arr)}]");
-}
+//List<int[]> ints = [[1, 2], [3, 4], [1, 5], [6, 7]];
+//Console.WriteLine("Original List of Arrays:");
+//foreach (var arr in ints)
+//{
+//    // Print the actual contents of each array
+//    Console.WriteLine($"[{string.Join(", ", arr)}]");
+//}
+//IList<int[]> mergedArray = Sample1.MergeIntervals(ints);
+//Console.WriteLine("Merged List of Arrays:");
+//foreach (var arr in mergedArray)
+//{
+//    // Print the actual contents of each merged array
+//    Console.WriteLine($"[{string.Join(", ", arr)}]");
+//}
+
+//Practice1.ReverseWordsWithoutSplit(input);
+
+// SortedDictionary
+//SortedDictionary<int, int> keyValuePairs = new SortedDictionary<int, int>();
+//keyValuePairs.Add(10, 2);
+//keyValuePairs.Add(2, 3);
+//keyValuePairs.Add(3, 4);
+//keyValuePairs.Add(12, 5);
+//foreach (var item in keyValuePairs)
+//{
+//    Console.WriteLine($"SortedDictionary - Key:{item.Key} Value:{item.Value}");
+//}
+//Console.WriteLine($"Accessing the value by key that exists: {keyValuePairs[3]}");
+//try
+//{
+//    Console.WriteLine($"Accessing the value by key that does not exists: {keyValuePairs[11]}");
+//}
+//catch (Exception ex)
+//{
+//    Console.WriteLine(ex.Message);
+//}
+
+//SortedList<int,int> sortedList = new SortedList<int,int>();
+//sortedList.Add(10, 2);
+//sortedList.Add(2, 3);
+//sortedList.Add(3, 4);
+//sortedList.Add(12, 5);
+//foreach (var item in sortedList)
+//{
+//    Console.WriteLine($"SortedList - Key:{item.Key} Value:{item.Value}");
+//}
+
+//Console.WriteLine($"Accessing the value by index that exists: {sortedList[3]}");
+//try
+//{
+//    Console.WriteLine($"Accessing the value by index that does not exists: {sortedList[11]}");
+//}
+//catch(IndexOutOfRangeException ex)
+//{
+//    Console.WriteLine(ex.Message);
+//}
+//catch (Exception ex)
+//{
+//    Console.WriteLine("The index does not exists in the list");
+//}
+//SortedSet<int> sortedSet = new SortedSet<int>();
+//sortedSet.Add(10);
+//sortedSet.Add(2);
+//sortedSet.Add(3);
+//sortedSet.Add(12);
+//foreach (var item in sortedSet)
+//{
+//    Console.WriteLine($"SortedSet - {item}");
+//}
+
+//List<Employee> employees = new List<Employee> { new Employee { Id=10,Name="John"},new Employee { Id=1,Name="Doe"} };
+//employees.Sort();
+//foreach (Employee employee in employees) Console.WriteLine($"{employee.Id} - {employee.Name}");
+Console.WriteLine(Practice1.CompressString(input));
