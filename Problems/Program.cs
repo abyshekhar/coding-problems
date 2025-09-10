@@ -47,7 +47,7 @@ string input = Console.ReadLine();
 //    Console.WriteLine($"[{string.Join(", ", arr)}]");
 //}
 
-//Practice1.ReverseWordsWithoutSplit(input);
+Practice1.ReverseWordsWithoutSplit(input);
 
 // SortedDictionary
 //SortedDictionary<int, int> keyValuePairs = new SortedDictionary<int, int>();
